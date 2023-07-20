@@ -1,0 +1,9 @@
+.vscode/
+/.vscode
+lib/oop2*
+lib/xyz*
+*.txt
+*.class
+*.log
+test/
+/test
