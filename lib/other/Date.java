@@ -174,6 +174,17 @@ public class Date implements Comparable<Date> {
         return day + 31*month + 31*12*year;
     }
 
+    // take a single String argument to specify the initialization values
+    public Date parsDate(String s) {
+        var sp = s.split("/");
+        var np = new int[sp.length];
+        for (int i = 0; i < 3; i++) {
+            np[i] = Integer.parseInt(sp[i]);
+        }
+
+        return new Date(np[0], np[1], np[2]);
+    }
+
     /**
      * Unit tests the {@code Date} data type.
      *
