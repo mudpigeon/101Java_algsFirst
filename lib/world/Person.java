@@ -44,5 +44,10 @@ public class Person {
         if (this.gender) return "male";
         else             return "female";
     }
+
+    public String toString() {
+        if (this.gender) return this.name + "(male): " + this.age;
+        else             return this.name + "(female): " + this.age;
+    }
 }
 
