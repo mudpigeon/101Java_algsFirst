@@ -85,12 +85,15 @@ public class Package<Item> implements AbstractPackage<Item> {
     }
 
     public static void main(String[] args) {
+
+        // 确认包能够如期构建
         var stats = new Package<Integer>();
         StdOut.println("初始包容量: " + stats.supremeSize());
         StdOut.println("是否为空: " + stats.isEmpty());
         StdOut.println("当前包大小为: " + stats.size());
 
 
+        // 添加元素并扩容
         for (int i = 0; i < 15; i++) {
             stats.add(StdRandom.uniformInt(1000));
         }
@@ -106,6 +109,7 @@ public class Package<Item> implements AbstractPackage<Item> {
         StdOut.println("第二次添加后包容量: " + stats.supremeSize());
         StdOut.println("当前包大小为: " + stats.size());
 
+        // 迭代器测试
         int sum = 0;
         for (Integer i : stats) {
             sum += i;
