@@ -1,4 +1,4 @@
-package lib.dstr;
+package lib.api;
 
 public interface AbstractPackage<Item> extends Iterable<Item> {
     /**

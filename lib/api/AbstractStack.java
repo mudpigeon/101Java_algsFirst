@@ -1,4 +1,4 @@
-package lib.dstr;
+package lib.api;
 
 public interface AbstractStack<Item> extends Iterable<Item> {
     

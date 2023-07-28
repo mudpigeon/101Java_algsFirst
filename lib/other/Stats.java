@@ -1,6 +1,6 @@
 package lib.other;
+import lib.api.Bag;
 import lib.std.*;
-import lib.dstr.Bag;
 
 /******************************************************************************
  *  Compilation:  javac Stats.java

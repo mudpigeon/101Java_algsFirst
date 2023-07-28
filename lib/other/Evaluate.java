@@ -1,6 +1,6 @@
 package lib.other;
+import lib.api.Stack;
 import lib.std.*;
-import lib.dstr.Stack;
 
 /******************************************************************************
  *  Compilation:  javac Evaluate.java
