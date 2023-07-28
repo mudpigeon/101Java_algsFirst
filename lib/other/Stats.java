@@ -1,5 +1,5 @@
 package lib.other;
-import lib.api.Bag;
+import lib.main.datastructure.Package;
 import lib.std.*;
 
 /******************************************************************************
@@ -21,7 +21,7 @@ public class Stats {
     public static void main(String[] args) {
 
         // read in numbers
-        Bag<Double> numbers = new Bag<Double>();
+        Package<Double> numbers = new Package<Double>();
         while (!StdIn.isEmpty()) {
             numbers.add(StdIn.readDouble());
         }

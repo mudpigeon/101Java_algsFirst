@@ -1,5 +1,5 @@
 package lib.other;
-import lib.api.Stack;
+import lib.main.datastructure.*;
 import lib.std.*;
 
 /******************************************************************************
