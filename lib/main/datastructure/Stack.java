@@ -80,14 +80,25 @@ public class Stack<Item> implements AbstractStack<Item> {
     }
 
     public static void main(String[] args) {
-        // var maillist = new Stack<String>();
-        // while (!StdIn.isEmpty()) {
-        //     String item = StdIn.readString();
-        //     if (!item.equals("-")) maillist.push(item);
-        //     else if (!maillist.isEmpty()) StdOut.print(maillist.pop() + " ");
-        // }
-        // StdOut.println("(" + maillist.size() + " left on stack)");
+        // 单元测试 1
+        /* 
+        Stack<String> s = new Stack<String>();
+        while (!StdIn.isEmpty()) { 
+            String item = StdIn.readString(); 
+            if (!item.equals("-")) {
+                s.push(item);
+                StdOut.print("Stack -> ");
+                for (String p : s) {
+                    StdOut.printf("%s ", p);
+                }
+                StdOut.println();
+            } 
+            else if (!s.isEmpty()) StdOut.print(s.pop() + " \n"); 
+        }
+        StdOut.println("(" + s.size() + " left on stack)");
+        */
 
+        // 单元测试 2
         var maillist = new Stack<String>();
 
         // StdOut.println(maillist.pop());
