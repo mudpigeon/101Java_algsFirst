@@ -65,6 +65,9 @@ public class Stack<Item> implements AbstractStack<Item> {
         return new ReverseArrayIterator();    
     }
     
+    /**
+     * 从栈底部迭代出每一个元素
+     */
     private class ReverseArrayIterator implements Iterator<Item> {
         // 支持后进先出的迭代
         private int i = N;
