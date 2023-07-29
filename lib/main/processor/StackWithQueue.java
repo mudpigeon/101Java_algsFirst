@@ -10,6 +10,21 @@ public class StackWithQueue {
         while (!s.isEmpty()) q.enqueue(s.pop());
     }
 
+    /**
+     * 静态方法，浅拷贝一个栈的副本，
+     * @param <Item>
+     * @param origin
+     * @return
+     */
+    public static Stack<String> copy(Stack<String> origin) {
+        var ret = new Stack<String>();
+        for (String item : origin) {
+            ret.push(item);
+        }
+        
+        return ret;
+    }
+
     public static void main(String[] args) {
         var stringQueue = new Queue<String>();
 
