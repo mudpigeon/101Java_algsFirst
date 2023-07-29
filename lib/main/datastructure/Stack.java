@@ -27,26 +27,24 @@ public class Stack<Item> implements AbstractStack<Item> {
 
     @Override
     public void push(Item item) {
-        if (head != null) {
             Node old = head;
             head = new Node(item);
             head.next = old;
+            old = null;
             N++;
-        } else {
-            head = new Node(item);
-            N++;
-        }
     }
 
+    /**
+     * 从 Stack 顶部弹出一个元素。
+     * 然而这个方法存在一个隐患，如果 Stack 为空，会导致 nullPointerException，
+     * 但我认为，这一部分的错误检查或许应该由调用方决定，试试看吧。
+     */
     @Override
     public Item pop() {
-        if (this.isEmpty()) return null;
-        else {
-            Node ret = head;
-            head = ret.next;
-            N--;
-            return ret.item;
-        }
+        Node ret = head;
+        head = ret.next;
+        N--;
+        return ret.item;
     }
 
 
@@ -70,9 +68,11 @@ public class Stack<Item> implements AbstractStack<Item> {
     private class ReverseArrayIterator implements Iterator<Item> {
         // 支持后进先出的迭代
         private int i = N;
+        private Node next = head;
         public boolean hasNext() { return i > 0; }
         public Item next() {
-            var ret = pop();
+            var ret = next.item;
+            next = next.next;
             i--;
             return ret;
         }
@@ -90,6 +90,7 @@ public class Stack<Item> implements AbstractStack<Item> {
 
         var maillist = new Stack<String>();
 
+        // StdOut.println(maillist.pop());
         for (int i = 0; i < 15; i++) {
             maillist.push("Arg: " + StdRandom.uniformInt(1000));
         }
@@ -103,5 +104,6 @@ public class Stack<Item> implements AbstractStack<Item> {
         for (String i : maillist) {
             StdOut.println(i);
         }
+        StdOut.println("Size: " + maillist.size());
     }
 }
