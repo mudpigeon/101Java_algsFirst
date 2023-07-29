@@ -1,6 +1,8 @@
 package lib.main.datastructure;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import lib.api.*;
 import lib.std.StdOut;
 import lib.std.StdRandom;
@@ -25,26 +27,44 @@ public class Stack<Item> implements AbstractStack<Item> {
         }
     }
 
+    /**
+     * Adds the item to this stack.
+     *
+     * @param  item the item to add
+     */
     @Override
     public void push(Item item) {
-            Node old = head;
-            head = new Node(item);
-            head.next = old;
-            old = null;
-            N++;
+        Node old = head;
+        head = new Node(item);
+        head.next = old;
+        old = null;
+        N++;
     }
 
     /**
-     * 从 Stack 顶部弹出一个元素。
-     * 然而这个方法存在一个隐患，如果 Stack 为空，会导致 nullPointerException，
-     * 但我认为，这一部分的错误检查或许应该由调用方决定，试试看吧。
+     * Removes and returns the item most recently added to this stack.
+     *
+     * @return the item most recently added
+     * @throws NoSuchElementException if this stack is empty
      */
     @Override
     public Item pop() {
+        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         Node ret = head;
         head = ret.next;
         N--;
         return ret.item;
+    }
+
+    /**
+     * Returns (but does not remove) the item most recently added to this stack.
+     *
+     * @return the item most recently added to this stack
+     * @throws NoSuchElementException if this stack is empty
+     */
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
+        return head.item;
     }
 
 
