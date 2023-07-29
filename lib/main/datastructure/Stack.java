@@ -1,5 +1,6 @@
 package lib.main.datastructure;
 
+import java.net.StandardProtocolFamily;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -138,6 +139,12 @@ public class Stack<Item> implements AbstractStack<Item> {
         for (String i : maillist) {
             StdOut.println(i);
         }
+        StdOut.println("____________");
+
+        int size = maillist.size();
+        for (int i = 0; i < size; i++) StdOut.println(maillist.pop());
+        StdOut.println("____________");
+        
         StdOut.println("Size: " + maillist.size());
     }
 }
