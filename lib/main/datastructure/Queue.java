@@ -2,6 +2,9 @@ package lib.main.datastructure;
 
 import java.util.Iterator;
 import lib.api.AbstractQueue;
+import lib.other.Date;
+import lib.std.StdOut;
+import lib.std.StdRandom;
 
 public class Queue<Item> implements AbstractQueue<Item> {
 
@@ -39,36 +42,128 @@ public class Queue<Item> implements AbstractQueue<Item> {
     
 
     @Override
-    public void enQueue(Item item) {
-        var temp = new Node(item);
-        head.prev = temp;
-        temp.next = head;
-        head = temp;
-        N++;
-
-        if (N == 1) {
-            tail = head;
+    public void enqueue(Item item) {
+        if(tail != null) {
+            var temp = new Node(item);
+            temp.prev = tail;
+            tail.next = temp;
+            tail = temp;
+        } else {
+            var temp = new Node(item);
+            tail = temp;
+            head = temp;
         }
+        N++;
     }
 
     @Override
-    public Item deQueue() {
-        if (this.isEmpty()) return null;
-        else {
-            Item ret;
-            re
+    public Item dequeue() {
+        if (head == null) {
+            return null;
+        } else if (head == tail) {
             N--;
-            return ret;
+            Node ret = head;
+            head = null;
+            tail = null;
+            return ret.body;
+        } else {
+            N--;
+            Node ret = head;
+            head = ret.next;
+            head.prev = null;
+            return ret.body;
         }
     }
 
+    public Item head() {
+        return head.body;
+    }
     
+    public Item tail() {
+        return tail.body;
+    }
 
     @Override
     public Iterator<Item> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return new HeadToTailIterator();
     }
 
+    private class HeadToTailIterator implements Iterator<Item> {
+
+        private int i = N;
+        private Node headNode = head;
+        @Override
+        public boolean hasNext() {
+            return i > 0;
+        }
+
+        @Override
+        public Item next() {
+            var traversePointer = headNode;
+            headNode = traversePointer.next;
+            i--;
+            return traversePointer.body;
+        }
+        
+    }
+
+    /**
+     * 驱动测试
+     * @param args
+     * 
+     * @Part1测试
+     */
+    public static void main(String[] args) {
+        // 入队和出队测试
+        Queue<String> queue = new Queue<>();
+        StdOut.println("Queue is empty: " + queue.isEmpty());
+        StdOut.println("Starting enqueue process:");
+        queue.enqueue("Alice");
+        queue.enqueue("Bob");
+        queue.enqueue("Charlie");
+        queue.enqueue("Ethan");
+        queue.enqueue("Olivia");
+        queue.enqueue("Liam");
+        queue.enqueue("Sophia");
+
+        StdOut.println("Starting dequeue process:");
+        for(int i = 0; i < 7; i++) {
+            StdOut.println((i+1) + " -> " + queue.dequeue());
+        }
+        StdOut.println("Queue has been clearen: " + queue.isEmpty());
+        StdOut.println("_____________Enq and deq Test Finished_____________");
+
+        // 异常测试
+        StdOut.println(queue.dequeue());
+        StdOut.println("________________Exception Test Finished________________");
+
+        // 迭代测试
+        var dateQueue = new Queue<Date>();
+        int year;
+        int month;
+        int day;
+        for (int i = 0; i < 20; i++) {
+            year = StdRandom.uniformInt(1990, 2030);
+            //StdOut.print(year + " ");
+            month = StdRandom.uniformInt(1, 12);
+            //StdOut.print(month + " ");
+            day = StdRandom.uniformInt(1, 25);
+            //StdOut.print(day + " ");
+            var temp = new Date(month, day, year);
+            dateQueue.enqueue(temp);
+        }
+        int i = 0;
+        for (Date d : dateQueue) {
+            StdOut.println(++i + " --> " + d.toString());
+        }
+
+        StdOut.println("Head --=> " + dateQueue.head());
+        StdOut.println("Tail --=> " + dateQueue.tail());
+
+        for (i = 0; i < 21; i ++) {
+            StdOut.println((i+1) + " -> " + dateQueue.dequeue());
+        }
+
+    }
     
 }
