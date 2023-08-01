@@ -21,12 +21,10 @@ public class Queue<Item> implements AbstractQueue<Item> {
     private class Node {
         private Item body;
         private Node next;
-        private Node prev;
 
         public Node(Item item2) {
             body = item2;
             next = null;
-            prev = null;
         }
     }
 
@@ -44,14 +42,14 @@ public class Queue<Item> implements AbstractQueue<Item> {
     @Override
     public void enqueue(Item item) {
         if(tail != null) {
-            var temp = new Node(item);
-            temp.prev = tail;
-            tail.next = temp;
-            tail = temp;
+            var hockNode = new Node(item);
+            var oldNode = this.tail;
+            oldNode.next = hockNode;
+            this.tail = hockNode;
         } else {
-            var temp = new Node(item);
-            tail = temp;
-            head = temp;
+            var hockNode = new Node(item);
+            tail = hockNode;
+            head = hockNode;
         }
         N++;
     }
@@ -70,7 +68,6 @@ public class Queue<Item> implements AbstractQueue<Item> {
             N--;
             Node ret = head;
             head = ret.next;
-            head.prev = null;
             return ret.body;
         }
     }
@@ -130,7 +127,7 @@ public class Queue<Item> implements AbstractQueue<Item> {
         for(int i = 0; i < 7; i++) {
             StdOut.println((i+1) + " -> " + queue.dequeue());
         }
-        StdOut.println("Queue has been clearen: " + queue.isEmpty());
+        StdOut.println("Queue has been cleared: " + queue.isEmpty());
         StdOut.println("_____________Enq and deq Test Finished_____________");
 
         // 异常测试
@@ -149,8 +146,8 @@ public class Queue<Item> implements AbstractQueue<Item> {
             //StdOut.print(month + " ");
             day = StdRandom.uniformInt(1, 25);
             //StdOut.print(day + " ");
-            var temp = new Date(month, day, year);
-            dateQueue.enqueue(temp);
+            var hockNode = new Date(month, day, year);
+            dateQueue.enqueue(hockNode);
         }
         int i = 0;
         for (Date d : dateQueue) {
