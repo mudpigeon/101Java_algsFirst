@@ -4,8 +4,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import lib.api.AbstractQueue;
-import lib.other.Date;
-import lib.std.StdOut;
 import lib.std.StdRandom;
 
 public class ResizingCircleArrayQueue<Item> implements AbstractQueue<Item> {
