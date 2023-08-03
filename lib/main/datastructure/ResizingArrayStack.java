@@ -15,9 +15,13 @@ import lib.std.StdOut;
  */
 public class ResizingArrayStack<Item> implements AbstractStack<Item> {
 
-    private Item[] a = (Item[]) new Object[1];
-    private int N = 0;
+    private Item[] a;
+    private int N;
 
+    public ResizingArrayStack() {
+        this.a = (Item[]) new Object[1];
+        this.N = 0;
+    }
     @Override
     public void push(Item item) {
         if (N == a.length) resize(2 * a.length);
